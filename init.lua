@@ -140,6 +140,12 @@ require('lazy').setup({
     commit = "490078b1593c6609e6a50ad5001e7902ea601824"
   },
 
+  -- presence
+  {
+    "andweeb/presence.nvim",
+    commit = "87c857a56b7703f976d3a5ef15967d80508df6e6"
+  },
+
   --file explorer
   { "lmburns/lf.nvim",         commit = "5c1d8569d3a221fb3bbf497de3f2834f1db289e1" },
 
