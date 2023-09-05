@@ -93,7 +93,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", default_opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", default_opts)
 
 vim.keymap.set("n", "<Tab>", ":tabnext<CR>", default_opts)
-vim.keymap.set("n", "<S-Tab>", ":tabnext<CR>", default_opts)
+vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", default_opts)
 vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close tab" })
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
 vim.keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
