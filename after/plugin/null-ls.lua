@@ -2,16 +2,18 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require("null-ls")
 
 null_ls.setup({
+    log_level = "debug",
     sources = {
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.formatting.prettier.with({
             extra_filetypes = { "astro" },
+
             extra_args = function(params)
-                if params.filetype ~= "astro" then
+                local filetype = require("plenary.filetype").detect_from_extension(params.bufname)
+
+                if filetype ~= "astro" then
                     return {}
                 end
-
-                print("FYLETYPE IS ASTRO")
 
                 return {
                     "--stdin-filepath",
@@ -19,6 +21,12 @@ null_ls.setup({
                     "--plugin=prettier-plugin-astro",
                 }
             end,
+            --
+            -- prefer_local = "node_modules/.bin/",
+            --
+            -- condition = function()
+            --     return utils.root_has_file({ ".prettierrc" })
+            -- end,
         }),
         null_ls.builtins.formatting.stylua,
     },
@@ -29,6 +37,10 @@ null_ls.setup({
                 group = augroup,
                 buffer = bufnr,
             })
+
+            vim.api.nvim_create_user_command("Prettier", function()
+                vim.cmd([[%! npx prettier %]])
+            end, { desc = "Organize Imports" })
 
             vim.api.nvim_create_autocmd("BufWritePre", {
                 group = augroup,
