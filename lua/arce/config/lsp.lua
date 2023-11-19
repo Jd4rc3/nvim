@@ -44,42 +44,63 @@ M.on_attach = function(_, bufnr)
 	end, { desc = "Format current buffer with LSP" })
 end
 
-local lspconfig = require("lspconfig")
+M.setup = function()
+	local lspconfig = require("lspconfig")
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local util = require("lspconfig/util")
 
-local function organize_imports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	}
-	vim.lsp.buf.execute_command(params)
-end
+	local function organize_imports()
+		local params = {
+			command = "_typescript.organizeImports",
+			arguments = { vim.api.nvim_buf_get_name(0) },
+		}
+		vim.lsp.buf.execute_command(params)
+	end
 
-lspconfig.tsserver.setup({
-	on_attach = function(client, bfnr)
-		M.on_attach(client, bfnr)
-		vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
-	end,
-})
-
-lspconfig.rust_analyzer.setup({
-	capabilities = capabilities,
-	on_attach = M.on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			assist = {
-				importGranularity = "module",
-				importPrefix = "by_self",
-			},
-			cargo = {
-				loadOutDirsFromCheck = true,
-			},
-			procMacro = {
-				enable = true,
+	--- Setup LSP
+	lspconfig.gopls.setup {
+		on_attach = M.on_attach,
+		capabilities = capabilities,
+		cmd = { vim.fn.stdpath('data') .. "/mason/bin/gopls.cmd" },
+		filetypes = { "go", "gomod", "gowork", "gotmpl" },
+		root_dir = util.root_pattern("go.mod", ".git", "go.work"),
+		settings = {
+			gopls = {
+				completeUnimported = true,
+				usePlaceholders = true,
+				analyses = {
+					unusedparams = true,
+				},
 			},
 		},
-	},
-})
+	}
+
+	lspconfig.tsserver.setup({
+		on_attach = function(client, bfnr)
+			M.on_attach(client, bfnr)
+			vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
+		end,
+	})
+
+	lspconfig.rust_analyzer.setup({
+		capabilities = capabilities,
+		on_attach = M.on_attach,
+		settings = {
+			["rust-analyzer"] = {
+				assist = {
+					importGranularity = "module",
+					importPrefix = "by_self",
+				},
+				cargo = {
+					loadOutDirsFromCheck = true,
+				},
+				procMacro = {
+					enable = true,
+				},
+			},
+		},
+	})
+end
 
 return M

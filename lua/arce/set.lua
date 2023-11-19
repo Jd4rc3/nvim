@@ -16,7 +16,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -34,7 +34,8 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.timeoutlen = 300
 
--- vim.o.shell = 'C:/Program Files/PowerShell/7-preview/pwsh.exe'
+--vim.o.shell = "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe"
+
 P = function(v)
     local content = vim.inspect(v)
     print(content)

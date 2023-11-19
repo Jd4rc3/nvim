@@ -77,10 +77,26 @@ M.lazygit = function()
     vim.keymap.set("n", "<M-g>", _lazygit_toggle, { noremap = true, silent = true })
 end
 
+M.windows_shell_config = function()
+    -- "-Nologo -Noprofile -Executionpolicy remotesigned -Command [console]::inputencoding=[console]::outputencoding=[system.text.encoding]::utf8;"
+    if vim.loop.os_uname().sysname == "Windows_NT" then
+        vim.o.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
+        vim.opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
+        vim.opt.shellcmdflag =
+        "-Nologo -Noprofile -Executionpolicy remotesigned -Command [console]::inputencoding=[console]::outputencoding=[system.text.encoding]::utf8;"
+        vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+        vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+        vim.opt.shellquote = ""
+        vim.opt.shellxquote = ""
+    end
+end
+
 M.setup = function()
+    M.windows_shell_config()
+
     require("toggleterm").setup {
         start_in_insert = true,
-        shell = vim.o.shell,
+        shell = vim.opt.shell._value,
         float_opts = {
             border = "curved",
             width = math.ceil(vim.o.columns * 0.8),

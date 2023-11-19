@@ -2,7 +2,7 @@ local function delete_other_buffers()
     local current_buf = vim.api.nvim_get_current_buf()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
-            vim.cmd('bd ' .. buf)
+            vim.cmd('silent! confirm bd ' .. buf)
         end
     end
 end
@@ -92,6 +92,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", default_opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", default_opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", default_opts)
 
+-- Tabs remaps
 vim.keymap.set("n", "<Tab>", ":tabnext<CR>", default_opts)
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", default_opts)
 vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close tab" })
@@ -103,4 +104,8 @@ vim.keymap.set("n", "<leader>tda", "<cmd>tabonly<cr>", { desc = "Delete all tabs
 vim.keymap.set("n", "<leader>tdl", delete_left_tabs, { desc = "Delete all left tabs" })
 vim.keymap.set("n", "<leader>tdr", delete_right_tabs, { desc = "Delete all right tabs" })
 
+-- buffers rempas
 vim.keymap.set("n", "<leader>bda", delete_other_buffers, { desc = "Delete all buffers but current" })
+vim.keymap.set("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bc", "<cmd>bd<cr>", { desc = "Delete buffer" })

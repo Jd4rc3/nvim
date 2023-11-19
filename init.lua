@@ -154,6 +154,10 @@ require("lazy").setup({
     commit = "490078b1593c6609e6a50ad5001e7902ea601824",
   },
   {
+    "leoluz/nvim-dap-go",
+    commit = "1b508e9db330108d3b5d62a6d9cc01fe6bbdd4e0"
+  },
+  {
     "kshenoy/vim-signature",
     commit = "6bc3dd1294a22e897f0dcf8dd72b85f350e306bc",
   },
@@ -509,13 +513,8 @@ mason_lspconfig.setup({
   ensure_installed = vim.tbl_keys(servers),
 })
 
-require("arce.config.lsp")
-
 mason_lspconfig.setup_handlers({
   function(server_name)
-    if server_name == "tsserver" then
-      return
-    end
     require("lspconfig")[server_name].setup({
       capabilities = capabilities,
       on_attach = require("arce.config.lsp").on_attach,
@@ -524,6 +523,7 @@ mason_lspconfig.setup_handlers({
     })
   end,
 })
+require("arce.config.lsp").setup()
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
