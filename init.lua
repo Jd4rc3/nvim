@@ -154,6 +154,21 @@ require("lazy").setup({
     commit = "490078b1593c6609e6a50ad5001e7902ea601824",
   },
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function()
+      -- This is your opts table
+      require("telescope").setup {
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+            }
+          }
+        }
+      }
+      require("telescope").load_extension("ui-select")
+    end
+  },
+  {
     "leoluz/nvim-dap-go",
     commit = "1b508e9db330108d3b5d62a6d9cc01fe6bbdd4e0"
   },
