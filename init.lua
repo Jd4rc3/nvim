@@ -154,23 +154,39 @@ require("lazy").setup({
     commit = "490078b1593c6609e6a50ad5001e7902ea601824",
   },
   {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
     "nvim-telescope/telescope-ui-select.nvim",
     config = function()
       -- This is your opts table
-      require("telescope").setup {
+      require("telescope").setup({
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-            }
-          }
-        }
-      }
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
+      })
       require("telescope").load_extension("ui-select")
-    end
+    end,
   },
   {
     "leoluz/nvim-dap-go",
-    commit = "1b508e9db330108d3b5d62a6d9cc01fe6bbdd4e0"
+    commit = "1b508e9db330108d3b5d62a6d9cc01fe6bbdd4e0",
   },
   {
     "kshenoy/vim-signature",
@@ -267,7 +283,7 @@ require("lazy").setup({
     -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    opts = {}
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
