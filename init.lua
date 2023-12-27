@@ -229,7 +229,7 @@ require("lazy").setup({
   { "mbbill/undotree",      commit = "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
 
   -- Harpoon
-  { "theprimeagen/harpoon", commit = "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
+  { "theprimeagen/harpoon" },
 
   --copilot
   { "github/copilot.vim",   commit = "a24c3fd686ecf53b81d7d259994691508a69ebf6" },
@@ -251,12 +251,8 @@ require("lazy").setup({
   {
     -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
-    },
+    main = "ibl",
+    opts = {}
   },
 
   -- "gc" to comment visual regions/lines
