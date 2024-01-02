@@ -1,29 +1,29 @@
 local function delete_other_buffers()
-    local current_buf = vim.api.nvim_get_current_buf()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
-            vim.cmd('silent! confirm bd ' .. buf)
-        end
-    end
+	local current_buf = vim.api.nvim_get_current_buf()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
+			vim.cmd('silent! confirm bd ' .. buf)
+		end
+	end
 end
 
 -- help me to write delete all left tabs and buffers
 local function delete_left_tabs()
-    local current_tab = vim.api.nvim_get_current_tabpage()
-    for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
-        if tab < current_tab then
-            vim.cmd('tabclose ' .. tab)
-        end
-    end
+	local current_tab = vim.api.nvim_get_current_tabpage()
+	for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+		if tab < current_tab then
+			vim.cmd('tabclose ' .. tab)
+		end
+	end
 end
 
 local function delete_right_tabs()
-    local current_tab = vim.api.nvim_get_current_tabpage()
-    for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
-        if tab > current_tab then
-            vim.cmd('tabclose ' .. tab)
-        end
-    end
+	local current_tab = vim.api.nvim_get_current_tabpage()
+	for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+		if tab > current_tab then
+			vim.cmd('tabclose ' .. tab)
+		end
+	end
 end
 
 local default_opts = { noremap = true, silent = true }
@@ -61,14 +61,15 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer" })
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<M-k>", "<cmd>cnext<CR>zz", { desc = "Next in QuickFix" })
+vim.keymap.set("n", "<M-j>", "<cmd>cprev<CR>zz", { desc = "Previous in QuickFix" })
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Replace current word (Using substituve)" })
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/appdata/local/nvim/lua/arce/packer.lua<CR>");
@@ -109,3 +110,17 @@ vim.keymap.set("n", "<leader>bda", delete_other_buffers, { desc = "Delete all bu
 vim.keymap.set("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bc", "<cmd>bd<cr>", { desc = "Delete buffer" })
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
