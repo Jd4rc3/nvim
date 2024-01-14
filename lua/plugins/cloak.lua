@@ -1,7 +1,7 @@
 return {
-  "laytan/cloak.nvim",
+  'laytan/cloak.nvim',
   config = function()
-    require('cloak').setup({
+    require('cloak').setup {
       enabled = true,
       cloak_character = '*',
       -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
@@ -27,6 +27,6 @@ return {
           replace = nil,
         },
       },
-    })
-  end
+    }
+  end,
 }
