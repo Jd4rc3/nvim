@@ -15,7 +15,6 @@ return {
         null_ls.builtins.code_actions.gomodifytags,
         null_ls.builtins.code_actions.impl,
         null_ls.builtins.diagnostics.golangci_lint,
-        null_ls.builtins.diagnostics.gospel,
         null_ls.builtins.formatting.gofmt
       },
     }
