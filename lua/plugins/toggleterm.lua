@@ -71,7 +71,7 @@ M.lazygit = function()
     lazygit:toggle()
   end
 
-  vim.keymap.set('n', '<M-g>', _lazygit_toggle, { noremap = true, silent = true })
+  vim.keymap.set('n', '<M-g>', _lazygit_toggle, { desc = 'Toggle lazygit', noremap = true, silent = true })
 end
 
 M.windows_shell_config = function()
@@ -87,8 +87,8 @@ M.windows_shell_config = function()
     -- vim.opt.shellquote = ''
     -- vim.opt.shellxquote = ''
 
-    vim.opt.shell = "C:\\Users\\arce\\scoop\\apps\\git\\current\\bin\\bash.exe"
-    vim.opt.shellcmdflag = "-s"
+    vim.opt.shell = 'C:\\Users\\arce\\scoop\\apps\\git\\current\\bin\\bash.exe'
+    vim.opt.shellcmdflag = '-s'
   end
 end
 

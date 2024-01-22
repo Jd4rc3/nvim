@@ -1,3 +1,13 @@
+-- local lfs = require 'lfs'
+--
+-- local function resolver_glob(ruta, extension)
+--   for archivo in lfs.dir(ruta) do
+--         if archivo:match(extension..'$') then
+--             print('Archivo encontrado:', archivo)
+--         end
+--   end
+-- end
+
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
@@ -142,15 +152,33 @@ return {
           },
         }
       end,
-      -- ['omnisharp'] = function ()
-      --  require('lspconfig')['omnisharp'].setup {
-      --      capabilities = capabilities,
-      --      On_attach = on_attach,
-      --      cmd = {
-      --          "C:\\Users\\arce\\AppData\\Local\\nvim-data\\mason\\bin\\omnisharp.CMD -z --hostPID 16652 DotNet:enablePackageRestore=false --encoding utf-8 --languageserver FormattingOptions:EnableEditorConfigSupport=true Sdk:IncludePrereleases=true"
-      --      }
-      --  }
-      -- end
+      ['omnisharp'] = function()
+        require('lspconfig')['omnisharp'].setup {
+          enable_editorconfig_support = true,
+          enable_ms_build_load_projects_on_demand = false,
+          enable_roslyn_analyzers = true,
+          organize_imports_on_format = true,
+          enable_import_completion = true,
+          sdk_include_prereleases = false,
+          analyze_open_documents_only = false,
+          capabilities = capabilities,
+          on_attach = on_attach,
+          filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
+          root_dir = require('lspconfig/util').root_pattern('*.sln', '*.csproj', 'project.json', 'global.json', 'packages.config'),
+        }
+      end,
+
+      --   ['csharp_ls'] = function()
+      --     require('lspconfig')['csharp_ls'].setup {
+      --       capabilities = capabilities,
+      --       on_attach = on_attach,
+      --       cmd = {
+      --         vim.fn.stdpath 'data' .. '/mason/bin/csharp-ls.CMD',
+      --         '--solution',
+      --         vim.fn.glob(vim.fn.getcwd() .. '/*.sln'),
+      --       },
+      --     }
+      --   end,
     }
   end,
 }
