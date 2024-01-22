@@ -95,6 +95,7 @@ return {
       pyright = {},
       rust_analyzer = {},
       tsserver = {},
+      omnisharp = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
 
       lua_ls = {
@@ -141,6 +142,15 @@ return {
           },
         }
       end,
+      -- ['omnisharp'] = function ()
+      --  require('lspconfig')['omnisharp'].setup {
+      --      capabilities = capabilities,
+      --      On_attach = on_attach,
+      --      cmd = {
+      --          "C:\\Users\\arce\\AppData\\Local\\nvim-data\\mason\\bin\\omnisharp.CMD -z --hostPID 16652 DotNet:enablePackageRestore=false --encoding utf-8 --languageserver FormattingOptions:EnableEditorConfigSupport=true Sdk:IncludePrereleases=true"
+      --      }
+      --  }
+      -- end
     }
   end,
 }
