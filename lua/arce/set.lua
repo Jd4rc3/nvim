@@ -55,17 +55,34 @@ vim.opt.colorcolumn = '80'
 --vim.o.shell = "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe"
 
 P = function(v)
-    local content = vim.inspect(v)
-    print(content)
-    vim.fn.setreg('+', content)
-    return v
+  local content = vim.inspect(v)
+  print(content)
+  vim.fn.setreg('+', content)
+  return v
 end
 
 RELOAD = function(...)
-    return require('plenary.reload').reload_module(...)
+  return require('plenary.reload').reload_module(...)
 end
 
 R = function(name)
-    RELOAD(name)
-    return require(name)
+  RELOAD(name)
+  return require(name)
 end
+
+vim.cmd [[
+let g:clipboard = {
+            \   'name': 'WslClipboard',
+            \   'copy': {
+            \      '+': 'clip.exe',
+            \      '*': 'clip.exe',
+            \    },
+            \   'paste': {
+            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
+]]
+
+vim.cmd [[set winbar=%=%m\ %f]]
