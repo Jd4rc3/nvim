@@ -70,7 +70,8 @@ R = function(name)
   return require(name)
 end
 
-vim.cmd [[
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+  vim.cmd [[
 let g:clipboard = {
             \   'name': 'WslClipboard',
             \   'copy': {
@@ -84,5 +85,6 @@ let g:clipboard = {
             \   'cache_enabled': 0,
             \ }
 ]]
+end
 
 vim.cmd [[set winbar=%=%m\ %f]]
