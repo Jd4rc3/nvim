@@ -87,4 +87,4 @@ let g:clipboard = {
 ]]
 end
 
-vim.cmd [[set winbar=%=%m\ %f]]
+vim.cmd [[set winbar=%=%m%B\ %f%=]]

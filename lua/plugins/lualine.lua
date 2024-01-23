@@ -28,9 +28,11 @@ return {
       buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand '%:t') ~= 1
       end,
+
       hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end,
+
       check_git_workspace = function()
         local filepath = vim.fn.expand '%:p:h'
         local gitdir = vim.fn.finddir('.git', filepath .. ';')
@@ -87,7 +89,7 @@ return {
       function()
         return '▊'
       end,
-      color = { fg = colors.blue }, -- Sets highlighting of component
+      color = { fg = colors.blue },      -- Sets highlighting of component
       padding = { left = 0, right = 1 }, -- We don't need space before this
     }
 
@@ -166,15 +168,18 @@ return {
         local msg = 'No Active Lsp'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
+
         if next(clients) == nil then
           return msg
         end
+
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             return client.name
           end
         end
+
         return msg
       end,
       icon = ' LSP:',
@@ -183,7 +188,7 @@ return {
 
     -- Add components to right sections
     ins_right {
-      'o:encoding', -- option component same as &encoding in viml
+      'o:encoding',       -- option component same as &encoding in viml
       fmt = string.upper, -- I'm not sure why it's upper case either ;)
       cond = conditions.hide_in_width,
       color = { fg = colors.green, gui = 'bold' },
@@ -192,7 +197,7 @@ return {
     ins_right {
       'fileformat',
       fmt = string.upper,
-      icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+      icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
       color = { fg = colors.green, gui = 'bold' },
     }
 
