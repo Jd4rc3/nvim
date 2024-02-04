@@ -112,8 +112,6 @@ return {
         Lua = {
           workspace = { checkThirdParty = false },
           telemetry = { enable = false },
-          -- NOTE: toggle below to ignore Lua_LS"s noisy `missing-fields` warnings
-          -- diagnostics = { disable = { "missing-fields" } },
         },
       },
     }
@@ -153,6 +151,7 @@ return {
           },
         }
       end,
+
       ['omnisharp'] = function()
         require('lspconfig')['omnisharp'].setup {
           enable_editorconfig_support = true,
@@ -168,6 +167,8 @@ return {
           root_dir = require('lspconfig/util').root_pattern('*.sln', '*.csproj', 'project.json', 'global.json', 'packages.config'),
         }
       end,
+
+      ['jdtls'] = function() end,
 
       --   ['csharp_ls'] = function()
       --     require('lspconfig')['csharp_ls'].setup {
