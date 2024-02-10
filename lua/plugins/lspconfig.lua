@@ -15,10 +15,6 @@ return {
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
-    -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
-
     -- Additional lua configuration, makes nvim stuff amazing!
     {
       'folke/neodev.nvim',
@@ -28,7 +24,7 @@ return {
             enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
             -- these settings will be used for your Neovim config directory
             runtime = true, -- runtime path
-            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            types = true,   -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
             plugins = true, -- installed opt or start plugins in packpath
             -- you can also specify the list of plugins to make available as a workspace library
             -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
