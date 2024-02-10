@@ -2,6 +2,7 @@ return {
   'j-hui/fidget.nvim',
   config = function()
     require('fidget').setup {
+      --
       -- Options related to LSP progress subsystem
       progress = {
         poll_rate = 0, -- How and when to poll for progress messages
@@ -23,11 +24,11 @@ return {
         display = {
           render_limit = 16, -- How many LSP messages to show at once
           done_ttl = 3, -- How long a message should persist after completion
-          done_icon = '✔', -- Icon shown when all LSP progress tasks are complete
+          done_icon = '', -- Icon shown when all LSP progress tasks are complete
           done_style = 'Constant', -- Highlight group for completed LSP tasks
           progress_ttl = math.huge, -- How long a message should persist when in progress
           -- Icon shown when LSP progress tasks are in progress
-          progress_icon = { pattern = 'dots', period = 1 },
+          progress_icon = { pattern = 'moon', period = 1 },
           -- Highlight group for in-progress LSP tasks
           progress_style = 'WarningMsg',
           group_style = 'Title', -- Highlight group for group name (LSP server name)
