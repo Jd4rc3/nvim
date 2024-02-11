@@ -47,7 +47,7 @@ return {
         dap = true,
         dap_ui = true,
         mason = true,
-        notify = false,
+        notify = true,
         which_key = true,
         mini = {
           enabled = true,

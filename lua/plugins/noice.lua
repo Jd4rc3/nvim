@@ -34,10 +34,10 @@ return {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
         enabled = false, -- enables the Noice messages UI
-        view = 'messages', -- default view for messages
-        view_error = 'messages', -- view for errors
-        view_warn = 'messages', -- view for warnings
-        view_history = 'messages', -- view for :messages
+        view = 'notify', -- default view for messages
+        view_error = 'notify', -- view for errors
+        view_warn = 'notify', -- view for warnings
+        view_history = 'notify', -- view for :messages
         view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
       },
       popupmenu = {
@@ -74,7 +74,7 @@ return {
         },
         -- :Noice last
         last = {
-          view = 'popup',
+          view = 'messages',
           opts = { enter = true, format = 'details' },
           filter = {
             any = {
@@ -90,7 +90,7 @@ return {
         -- :Noice errors
         errors = {
           -- options for the message history that you get with `:Noice`
-          view = 'popup',
+          view = 'messages',
           opts = { enter = true, format = 'details' },
           filter = { error = true },
           filter_opts = { reverse = true },
@@ -102,12 +102,12 @@ return {
         -- event is always "notify" and kind can be any log level as a string
         -- The default routes will forward notifications to nvim-notify
         -- Benefit of using Noice for this is the routing and consistent history view
-        enabled = true,
+        enabled = false,
         view = 'notify',
       },
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false,
           -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
           -- See the section on formatting for more details on how to customize.
           --- @type NoiceFormat|string
@@ -147,7 +147,7 @@ return {
         message = {
           -- Messages shown by lsp servers
           enabled = true,
-          view = 'notify',
+          view = 'messages',
           opts = {},
         },
         -- defaults for hover and signature help
