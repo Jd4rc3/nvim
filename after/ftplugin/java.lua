@@ -57,9 +57,15 @@ end
 
 local lombok_agent_arg = '--jvm-arg=-javaagent:' .. vim.fn.stdpath 'data' .. '/mason/packages/jdtls/lombok.jar'
 
+local jdtls_bin = vim.fn.stdpath 'data' .. '/mason/bin/jdtls'
+
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+  jdtls_bin = jdtls_bin .. '.cmd'
+end
+
 local config = {
   cmd = {
-    vim.fn.stdpath 'data' .. '/mason/bin/jdtls',
+    jdtls_bin,
     lombok_agent_arg,
     '-configuration',
     os.getenv 'HOME' .. '/.cache/jdtls/config',
@@ -67,7 +73,12 @@ local config = {
     os.getenv 'HOME' .. '/.cache/jdtls/workspace',
   },
   root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
-  on_attach = on_attach
+  on_attach = on_attach,
 }
 
+config['init_options'] = {
+  bundles = {
+    vim.fn.glob(Java_debug_path .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', 1),
+  },
+}
 require('jdtls').start_or_attach(config)

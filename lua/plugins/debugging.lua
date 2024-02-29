@@ -80,6 +80,34 @@ local setup_dap_go = function()
   require('dap-go').setup()
 end
 
+local setup_java_debug_plugins = function()
+  local code_plugins_path = vim.fn.stdpath 'data' .. '/code_plugins'
+  Java_debug_path = code_plugins_path .. '/java-debug'
+  VScode_java_test_path = code_plugins_path .. '/vscode-java-test'
+
+  if not vim.loop.fs_stat(Java_debug_path) then
+    vim.fn.system {
+      'git',
+      'clone',
+      'https://github.com/microsoft/java-debug',
+      Java_debug_path,
+    }
+  end
+
+  if not vim.loop.fs_stat(VScode_java_test_path) then
+    vim.fn.system {
+      'git',
+      'clone',
+      'https://github.com/microsoft/vscode-java-test',
+      VScode_java_test_path,
+    }
+  end
+end
+
+local setup_java_debug = function()
+  setup_java_debug_plugins()
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = { 'rcarriga/nvim-dap-ui', 'leoluz/nvim-dap-go' },
@@ -87,5 +115,6 @@ return {
     keymaps()
     setup_dapui()
     setup_dap_go()
+    setup_java_debug()
   end,
 }

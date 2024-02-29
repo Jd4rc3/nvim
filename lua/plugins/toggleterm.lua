@@ -88,7 +88,7 @@ M.windows_shell_config = function()
     -- vim.opt.shellxquote = ''
 
     -- vim.opt.shell = 'C:\\Users\\arce\\scoop\\apps\\git\\current\\bin\\bash.exe'
-    vim.opt.shell = os.getenv 'USERPROFILE' .. '\\scoop\\apps\\git\\current\\bin\\bash.exe'
+    vim.opt.shell = os.getenv 'HOME' .. '\\scoop\\apps\\git\\current\\bin\\bash.exe'
     vim.opt.shellcmdflag = '-s'
   end
 end
