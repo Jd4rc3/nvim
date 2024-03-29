@@ -24,6 +24,8 @@ return {
         null_ls.builtins.formatting.gofmt,
         --  docker
         null_ls.builtins.diagnostics.hadolint,
+        -- asm
+        null_ls.builtins.formatting.asmfmt,
       },
     }
   end,

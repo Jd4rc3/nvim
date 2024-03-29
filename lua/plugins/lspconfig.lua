@@ -159,7 +159,6 @@ return {
           analyze_open_documents_only = false,
           capabilities = capabilities,
           on_attach = on_attach,
-          init_options = { 'RoslynExtensionsOptions:inlayHintsOptions:enableForParameters:true' },
           filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
           root_dir = require('lspconfig/util').root_pattern('*.sln', '*.csproj', 'project.json', 'global.json', 'packages.config', 'omnisharp.json'),
         }
