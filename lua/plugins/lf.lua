@@ -53,6 +53,7 @@ end
 
 return {
   'lmburns/lf.nvim',
+  enabled = false,
   config = function()
     M.setup()
   end,

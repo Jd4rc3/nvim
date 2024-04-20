@@ -75,19 +75,7 @@ M.lazygit = function()
 end
 
 M.windows_shell_config = function()
-  -- "-Nologo -Noprofile -Executionpolicy remotesigned -Command [console]::inputencoding=[console]::outputencoding=[system.text.encoding]::utf8;"
   if vim.loop.os_uname().sysname == 'Windows_NT' then
-    -- local pwsh = 'pwsh -NoLogo -NoProfile'
-
-    -- vim.opt.shell = vim.fn.executable 'pwsh' and pwsh or 'powershell'
-    -- vim.opt.shellcmdflag =
-    --   '-NoLogo -NoProfile -ExecutionPolicy remotesigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    -- vim.opt.vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-    -- vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    -- vim.opt.shellquote = ''
-    -- vim.opt.shellxquote = ''
-
-    -- vim.opt.shell = 'C:\\Users\\arce\\scoop\\apps\\git\\current\\bin\\bash.exe'
     vim.opt.shell = os.getenv 'HOME' .. '\\scoop\\apps\\git\\current\\bin\\bash.exe'
     vim.opt.shellcmdflag = '-s'
   end
@@ -113,6 +101,7 @@ end
 return {
   'akinsho/toggleterm.nvim',
   branch = 'main',
+  enabled = false,
   commit = '12cba0a1967b4f3f31903484dec72a6100dcf515',
   config = function()
     require('toggleterm').setup()
