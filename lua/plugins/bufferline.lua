@@ -8,7 +8,7 @@ return {
       options = {
         mode = 'tabs',
         indicator = {
-          style = 'underline',
+          style = 'none',
         },
       },
     }
