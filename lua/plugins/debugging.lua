@@ -110,7 +110,7 @@ end
 
 return {
   'mfussenegger/nvim-dap',
-  dependencies = { 'rcarriga/nvim-dap-ui', 'leoluz/nvim-dap-go' },
+  dependencies = {'nvim-neotest/nvim-nio', 'rcarriga/nvim-dap-ui', 'leoluz/nvim-dap-go' },
   config = function()
     keymaps()
     setup_dapui()
