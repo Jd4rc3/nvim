@@ -1,5 +1,6 @@
 return {
   'github/copilot.vim',
+  enabled = false,
   config = function()
     vim.cmd [[let g:copilot_no_tab_map = v:true]]
     vim.cmd [[imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")]]

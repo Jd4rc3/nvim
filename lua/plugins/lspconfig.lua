@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 -- local lfs = require 'lfs'
 --
 -- local function resolver_glob(ruta, extension)
@@ -24,7 +25,7 @@ return {
             enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
             -- these settings will be used for your Neovim config directory
             runtime = true, -- runtime path
-            types = true,   -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
             plugins = true, -- installed opt or start plugins in packpath
             -- you can also specify the list of plugins to make available as a workspace library
             -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
@@ -49,12 +50,6 @@ return {
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don"t have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
@@ -91,19 +86,28 @@ return {
       end, { desc = 'Format current buffer with LSP' })
     end
 
+    -- setup log level
+    vim.lsp.set_log_level(vim.lsp.log_levels.DEBUG)
+
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
     require('mason').setup()
 
     local servers = {
+      harper_ls = {},
       clangd = {},
       gopls = {},
       pyright = {},
       rust_analyzer = {},
       tsserver = {},
       omnisharp = {},
-      html = { filetypes = { 'html', 'twig', 'hbs' } },
+      asm_lsp = {},
+      autotools_ls = {},
+      cmake = {},
+      jdtls = {},
+      terraformls = {},
 
+      html = { filetypes = { 'html', 'twig', 'hbs' } },
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
@@ -134,16 +138,81 @@ return {
       end,
 
       ['clangd'] = function()
+        -- local compile_command_dir = vim.fn.glob '**/compile_commands.json'
+        -- local compile_commands = ''
+        -- if compile_command_dir ~= '' then
+        --   compile_commands = string.format('--compile-commands-dir=%s/%s', vim.fn.getcwd(), compile_command_dir)
+        -- end
+
         require('lspconfig')['clangd'].setup {
           capabilities = capabilities,
           on_attach = on_attach,
           cmd = {
             'clangd',
-            '--background-index',
-            '--clang-tidy',
-            '--completion-style=bundled',
-            '--header-insertion=iwyu',
-            '--cross-file-rename',
+            '--offset-encoding=utf-16',
+            '--background-index', -- Continuously index project files
+            '--clang-tidy', -- Enable clang-tidy for code analysis
+            '--completion-style=bundled', -- Use bundled completion data
+            '--header-insertion=iwyu', -- Use Include What You Use (IWYU) for header suggestions
+            -- compile_commands,
+          },
+        }
+      end,
+
+      ['terraformls'] = function()
+        local group = 'terraform'
+        vim.api.nvim_create_augroup(group, {})
+        vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPre' }, {
+          group = group,
+          pattern = { '*.tf' },
+          command = 'set ft=terraform',
+        })
+
+        -- → terraform.codelens.referenceCount              default: false
+        -- → terraform.validation.enableEnhancedValidation  default: true
+        -- → terraform.languageServer.args                           default: ["serve"]
+        -- → terraform.languageServer.enable                         default: true
+        -- → terraform.languageServer.ignoreSingleFileWarning        default: false
+        -- → terraform.languageServer.indexing.ignoreDirectoryNames  default: []
+        -- → terraform.languageServer.indexing.ignorePaths           default: []
+        -- → terraform.languageServer.path                           default: ""
+        -- → terraform.languageServer.tcp.port
+        -- → terraform.languageServer.terraform.logFilePath
+        -- → terraform.languageServer.terraform.path
+        -- → terraform.languageServer.terraform.timeout
+        -- → terraform.experimentalFeatures.prefillRequiredFields  default: false
+        -- → terraform.experimentalFeatures.validateOnSave         default: false
+
+        local terraformls = require('lspconfig')['terraformls']
+        terraformls.setup {
+          init_options = {
+            terraform = {
+              languageServer = {
+                indexing = {
+                  ignorePaths = {
+                    '**/.terraform/*',
+                    '**/.terraform.lock.hcl',
+                    '**/terraform.tfstate',
+                    '**/terraform.tfstate.backup',
+                    '**/terraform.plan',
+                    '**/terraform*.plan',
+                    '**/crash.log',
+                    '**/vendor/*',
+                    '**/.vscode/*',
+                    '**/.idea/*',
+                    '**/.project',
+                    '**/generated/*',
+                    '**/build/*',
+                  },
+                },
+              },
+
+              codelens = { referenceCount = true },
+
+              experimentalFeatures = {
+                prefillRequiredFields = true,
+              },
+            }, --Terraform
           },
         }
       end,

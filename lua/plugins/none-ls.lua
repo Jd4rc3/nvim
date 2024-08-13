@@ -26,6 +26,14 @@ return {
         null_ls.builtins.diagnostics.hadolint,
         -- asm
         null_ls.builtins.formatting.asmfmt,
+        -- cmake
+        null_ls.builtins.formatting.gersemi,
+        null_ls.builtins.diagnostics.cmake_lint,
+        -- terraform
+        null_ls.builtins.diagnostics.terraform_validate,
+        null_ls.builtins.diagnostics.trivy,
+        -- null_ls.builtins.formatting.opentofu_fmt,
+        null_ls.builtins.formatting.terraform_fmt
       },
     }
   end,
