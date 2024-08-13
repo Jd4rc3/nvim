@@ -36,13 +36,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
--- vim.keymap.set("n", "<leader>vwm", function()
--- 	require("vim-with-me").StartVimWithMe()
--- end)
--- vim.keymap.set("n", "<leader>svwm", function()
--- 	require("vim-with-me").StopVimWithMe()
--- end)
-
 -- -- greatest remap ever
 vim.keymap.set('x', '<leader>p', [["_dP]])
 
@@ -67,10 +60,6 @@ vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 vim.keymap.set('n', '<M-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace current word (Using substituve)' })
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/appdata/local/nvim/lua/arce/packer.lua<CR>");
--- vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-
--- -- alpha2
 vim.keymap.set('i', 'jk', '<ESC>', default_opts)
 vim.keymap.set('t', 'jk', '<C-\\><C-n>', default_opts)
 vim.keymap.set('v', 'p', '"_dP', default_opts)
@@ -88,8 +77,12 @@ vim.keymap.set('n', '<C-j>', '<C-w>j', default_opts)
 vim.keymap.set('n', '<C-k>', '<C-w>k', default_opts)
 vim.keymap.set('n', '<C-l>', '<C-w>l', default_opts)
 
+--Terminal remaps
+vim.keymap.set('n','<leader>tv',':vs | wincmd l | term<CR>',default_opts)
+vim.keymap.set('n','<leader>th',':sp | wincmd j | term<CR>',default_opts)
+
 -- Tabs remaps
-vim.keymap.set('n', '<Tab>', ':tabNext<CR>', default_opts)
+vim.keymap.set('n', '<Tab>', ':tabnext<CR>', default_opts)
 vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', default_opts)
 vim.keymap.set('n', '<F4>', '<cmd>tabclose<cr>', { desc = 'Close tab' })
 vim.keymap.set('n', '<leader>tn', '<cmd>tabnext<cr>', { desc = 'Next tab' })
