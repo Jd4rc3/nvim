@@ -3,6 +3,8 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   -- Enable `lukas-reineke/indent-blankline.nvim`
   -- See `:help ibl`
+  branch = 'master',
+  commit = 'dddb5d2',
   main = 'ibl',
   opts = {},
 }

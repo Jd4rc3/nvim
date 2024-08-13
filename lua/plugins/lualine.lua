@@ -2,6 +2,8 @@ return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
   -- See `:help lualine.txt`
+  branch = 'master',
+  commit = 'b431d22',
   config = function()
     -- Eviline config for lualine
     -- Author: shadmansaleh

@@ -1,1 +1,1 @@
-return { 'machakann/vim-sandwich' }
+return { 'achakann/vim-sandwich' }

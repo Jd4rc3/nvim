@@ -1,5 +1,6 @@
 return {
   'rmagatti/auto-session',
+  commit = '322d82f',
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require('auto-session').setup {

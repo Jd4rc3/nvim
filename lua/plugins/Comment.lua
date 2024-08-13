@@ -2,6 +2,7 @@
 -- "gc" to comment visual regions/lines
 return {
   'numToStr/Comment.nvim',
+  version = '^0.8.0',
   opts = {},
   config = function()
     require('Comment').setup {

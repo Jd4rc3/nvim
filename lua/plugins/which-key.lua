@@ -1,6 +1,7 @@
 -- Useful plugin to show you pending keybinds.
 return {
   'folke/which-key.nvim',
+  version='^3.13.2',
   dependencies = {
     {
       'echasnovski/mini.nvim',

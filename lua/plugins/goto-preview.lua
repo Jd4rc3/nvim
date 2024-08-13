@@ -42,6 +42,7 @@ end
 
 return {
   'rmagatti/goto-preview',
+  commit = '1519ea3',
   config = function()
     configs()
     keymaps()

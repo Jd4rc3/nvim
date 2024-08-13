@@ -3,6 +3,8 @@ return {
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
   },
+  branch = 'main',
+  commit = 'cfa65d8',
   config = function()
     local null_ls = require 'null-ls'
 
@@ -33,7 +35,7 @@ return {
         null_ls.builtins.diagnostics.terraform_validate,
         null_ls.builtins.diagnostics.trivy,
         -- null_ls.builtins.formatting.opentofu_fmt,
-        null_ls.builtins.formatting.terraform_fmt
+        null_ls.builtins.formatting.terraform_fmt,
       },
     }
   end,

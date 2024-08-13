@@ -1,6 +1,7 @@
 return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
+  commit = '0378a6c',
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
@@ -33,9 +34,10 @@ return {
     -- Toggle previous & next buffers stored within Harpoon list
     vim.keymap.set('n', '<M-p>', function()
       harpoon:list():prev()
-    end)
+    end, { desc = 'Toggle previous stored buffer within Harpoon list' })
+
     vim.keymap.set('n', '<M-n>', function()
       harpoon:list():next()
-    end)
+    end, { desc = 'Toggle next stored buffer within Harpoon list' })
   end,
 }
