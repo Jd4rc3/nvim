@@ -84,21 +84,19 @@ R = function(name)
   return require(name)
 end
 
-if vim.loop.os_uname().sysname == 'Windows_NT' then
-  vim.cmd [[
+vim.cmd [[
 let g:clipboard = {
-            \   'name': 'WslClipboard',
-            \   'copy': {
-            \      '+': 'clip.exe',
-            \      '*': 'clip.exe',
-            \    },
-            \   'paste': {
-            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            \   },
-            \   'cache_enabled': 0,
-            \ }
-]]
-end
+\   'name': 'WslClipboard',
+\   'copy': {
+\      '+': 'win32yank.exe -i --crlf',
+\      '*': 'win32yank.exe -i --crlf',
+\    },
+\   'paste': {
+\      '+': 'win32yank.exe -O --lf',
+\      '*': 'win32yank.exe -O --lf',
+\   },
+\   'cache_enabled': 0,
+\ }
+  ]]
 
 vim.cmd [[set winbar=%=%m%B\ %f%=]]
