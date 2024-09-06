@@ -18,6 +18,8 @@ return {
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = true,
 
+        include_surrounding_whitespace = false,
+
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = {
@@ -41,6 +43,12 @@ return {
               ['if'] = '@function.inner',
               ['ac'] = '@class.outer',
               ['ic'] = '@class.inner',
+              ['ah'] = '@h1.outer',
+              ['ih'] = '@h1.inner',
+              ['aj'] = '@h2.outer',
+              ['ij'] = '@h2.inner',
+              ['ak'] = '@h3.outer',
+              ['ik'] = '@h3.inner',
             },
           },
           move = {
@@ -49,6 +57,9 @@ return {
             goto_next_start = {
               [']m'] = '@function.outer',
               [']]'] = '@class.outer',
+              [']h'] = '@h1.outer',
+              [']j'] = '@h2.outer',
+              [']k'] = '@h3.outer',
             },
             goto_next_end = {
               [']M'] = '@function.outer',
@@ -57,6 +68,9 @@ return {
             goto_previous_start = {
               ['[m'] = '@function.outer',
               ['[['] = '@class.outer',
+              ['[h'] = '@h1.outer',
+              ['[j'] = '@h2.outer',
+              ['[k'] = '@h3.outer',
             },
             goto_previous_end = {
               ['[M'] = '@function.outer',
