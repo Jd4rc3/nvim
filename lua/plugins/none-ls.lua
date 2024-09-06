@@ -36,6 +36,11 @@ return {
         null_ls.builtins.diagnostics.trivy,
         -- null_ls.builtins.formatting.opentofu_fmt,
         null_ls.builtins.formatting.terraform_fmt,
+        -- yaml
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.yamlfix,
+        -- php
+        null_ls.builtins.formatting.phpcsfixer
       },
     }
   end,

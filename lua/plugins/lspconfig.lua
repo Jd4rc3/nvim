@@ -25,7 +25,7 @@ return {
             enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
             -- these settings will be used for your Neovim config directory
             runtime = true, -- runtime path
-            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            types = true,   -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
             plugins = true, -- installed opt or start plugins in packpath
             -- you can also specify the list of plugins to make available as a workspace library
             -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
@@ -106,6 +106,7 @@ return {
       cmake = {},
       jdtls = {},
       terraformls = {},
+      intelephense = {},
 
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       lua_ls = {
@@ -150,10 +151,10 @@ return {
           cmd = {
             'clangd',
             '--offset-encoding=utf-16',
-            '--background-index', -- Continuously index project files
-            '--clang-tidy', -- Enable clang-tidy for code analysis
+            '--background-index',         -- Continuously index project files
+            '--clang-tidy',               -- Enable clang-tidy for code analysis
             '--completion-style=bundled', -- Use bundled completion data
-            '--header-insertion=iwyu', -- Use Include What You Use (IWYU) for header suggestions
+            '--header-insertion=iwyu',    -- Use Include What You Use (IWYU) for header suggestions
             -- compile_commands,
           },
         }
