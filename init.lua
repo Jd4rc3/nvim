@@ -1,8 +1,4 @@
 require 'arce'
------------------------------------------------------------
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
------------------------------------------------------------
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then

@@ -6,6 +6,8 @@ return {
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
 
+    'onsails/lspkind.nvim',
+
     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
@@ -21,10 +23,24 @@ return {
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+    local lspkind = require 'lspkind'
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
 
     cmp.setup {
+      formatting = {
+        format = lspkind.cmp_format {
+          mode = 'symbol',
+          maxwidth = 50,
+          symbol_map = { Supermaven = '' },
+          ellipsis_char = '...',
+          show_labelDetails = true,
+          before = function(entry, vim_item)
+            return vim_item
+          end,
+        },
+      },
+
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -63,6 +79,7 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
+        { name = 'supermaven' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },

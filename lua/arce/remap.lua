@@ -25,7 +25,8 @@ end
 local default_opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+--vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>pv', '<cmd>Oil<cr>')
 
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -57,7 +58,8 @@ vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>zz', { desc = 'Previous in QuickFix'
 vim.keymap.set('n', '<leader>j', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lprev<CR>zz')
 
-vim.keymap.set('n', '<M-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace current word (Using substituve)' })
+vim.keymap.set('n', '<M-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Replace current word (Using substituve)' })
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set('i', 'jk', '<ESC>', default_opts)
@@ -78,8 +80,8 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', default_opts)
 vim.keymap.set('n', '<C-l>', '<C-w>l', default_opts)
 
 --Terminal remaps
-vim.keymap.set('n','<leader>tv',':vs | wincmd l | term<CR>',default_opts)
-vim.keymap.set('n','<leader>th',':sp | wincmd j | term<CR>',default_opts)
+vim.keymap.set('n', '<leader>tv', ':vs | wincmd l | term<CR>', default_opts)
+vim.keymap.set('n', '<leader>th', ':sp | wincmd j | term<CR>', default_opts)
 
 -- Tabs remaps
 vim.keymap.set('n', '<Tab>', ':tabnext<CR>', default_opts)
@@ -97,6 +99,8 @@ vim.keymap.set('n', '<leader>tdr', delete_right_tabs, { desc = 'Delete all right
 vim.keymap.set('n', '<leader>bda', delete_other_buffers, { desc = 'Delete all buffers but current' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<M-l>', '<cmd>bn<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<M-h>', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>bc', '<cmd>bd<cr>', { desc = 'Delete buffer' })
 
 -- Keymaps for better default experience
