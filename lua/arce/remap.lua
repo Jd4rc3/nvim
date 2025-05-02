@@ -44,7 +44,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])
 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
-vim.keymap.set("i", "<C-g>", "<Esc>")
+vim.keymap.set({'n','v','x','s','o','!','t'}, "<C-g>", "<Esc>")
 
 -- vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Format buffer' })
@@ -98,6 +98,7 @@ vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<M-l>', '<cmd>bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<M-h>', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>bc', '<cmd>bd<cr>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<leader>`','<cmd>b #<cr>',{desc='Switch to last buffer'})
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
