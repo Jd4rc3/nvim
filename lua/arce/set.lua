@@ -84,19 +84,6 @@ R = function(name)
   return require(name)
 end
 
-vim.cmd [[
-let g:clipboard = {
-\   'name': 'WslClipboard',
-\   'copy': {
-\      '+': 'win32yank.exe -i --crlf',
-\      '*': 'win32yank.exe -i --crlf',
-\    },
-\   'paste': {
-\      '+': 'win32yank.exe -O --lf',
-\      '*': 'win32yank.exe -O --lf',
-\   },
-\   'cache_enabled': 0,
-\ }
-  ]]
+require('arce.clipboard').setup_clipboard()
 
 vim.cmd [[set winbar=%=%m%B\ %f%=]]

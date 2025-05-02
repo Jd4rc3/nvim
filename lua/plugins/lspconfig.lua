@@ -99,7 +99,7 @@ return {
       gopls = {},
       pyright = {},
       rust_analyzer = {},
-      tsserver = {},
+      ts_ls = {},
       omnisharp = {},
       asm_lsp = {},
       autotools_ls = {},
