@@ -91,13 +91,13 @@ vim.keymap.set('n', '<leader>tda', '<cmd>tabonly<cr>', { desc = 'Delete all tabs
 vim.keymap.set('n', '<leader>tdl', delete_left_tabs, { desc = 'Delete all left tabs' })
 vim.keymap.set('n', '<leader>tdr', delete_right_tabs, { desc = 'Delete all right tabs' })
 
--- buffers rempas
+-- buffers remaps
 vim.keymap.set('n', '<leader>bda', delete_other_buffers, { desc = 'Delete all buffers but current' })
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<M-l>', '<cmd>bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<M-h>', '<cmd>bp<cr>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<leader>bc', '<cmd>bd<cr>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<leader>bk', '<cmd>bd<cr>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>`','<cmd>b #<cr>',{desc='Switch to last buffer'})
 
 -- Keymaps for better default experience
