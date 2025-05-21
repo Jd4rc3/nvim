@@ -17,8 +17,8 @@ return {
         -- HTML & XML
         null_ls.builtins.formatting.tidy,
         -- MISCELLANEOUS
-        null_ls.builtins.completion.spell,
-        null_ls.builtins.code_actions.refactoring,
+        --null_ls.builtins.completion.spell,
+        --null_ls.builtins.code_actions.refactoring,
         --  golang
         null_ls.builtins.code_actions.gomodifytags,
         null_ls.builtins.code_actions.impl,

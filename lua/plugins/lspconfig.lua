@@ -94,7 +94,7 @@ return {
     require('mason').setup()
 
     local servers = {
-      harper_ls = {},
+      --harper_ls = {},
       clangd = {},
       gopls = {},
       pyright = {},
