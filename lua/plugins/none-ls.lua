@@ -5,6 +5,7 @@ return {
   },
   branch = 'main',
   commit = 'cfa65d8',
+  enabled=false,
   config = function()
     local null_ls = require 'null-ls'
 
